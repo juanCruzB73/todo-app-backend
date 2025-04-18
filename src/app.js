@@ -18,6 +18,7 @@ app.use(express.static("public"));
 app.use(express.json());
 
 app.use('/api/backlog',require('./routes/backlog'));
+app.use('/api/sprints',require('./routes/sprints'));
 
 
 app.listen(process.env.PORT,()=>console.log(`server running on port ${process.env.PORT}`))
