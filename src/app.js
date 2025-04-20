@@ -19,6 +19,7 @@ app.use(express.json());
 
 app.use('/api/backlog',require('./routes/backlog'));
 app.use('/api/sprints',require('./routes/sprints'));
+app.use('/api/tasks',require('./routes/tasks'));
 
 
 app.listen(process.env.PORT,()=>console.log(`server running on port ${process.env.PORT}`))
