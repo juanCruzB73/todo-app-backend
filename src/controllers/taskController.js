@@ -35,50 +35,6 @@ const getTaskById=async(req,res)=>{
     }
 };
 
-const updateSprint=async(req,res)=>{
 
-    const { sprintId } = req.params;
-    
-    try{
-        const sprint=await Sprint.findByIdAndUpdate(sprintId,req.body);
-        
-        if(!sprint)return res.status(404).json({message:"error finding the sprint"});
-        
-        res.json({
-            ok:true,
-            sprint:req.body,
-            msg:"sprint edited with success"
-        })
-    }catch(error){
-        console.log(error);
-        res.status(500).json({
-            ok:false,
-            msg:"internal error"
-        });
-    }
-};
-
-const deleteSprint=async(req,res)=>{
-
-    const { sprintId } = req.params;
-    
-    try{
-        const sprint=await Sprint.findByIdAndDelete(sprintId);
-        
-        if(!sprint)return res.status(404).json({message:"error finding the sprint"});
-        
-        res.json({
-            ok:true,
-            sprint:req.body,
-            msg:"sprint edited with success"
-        })
-    }catch(error){
-        console.log(error);
-        res.status(500).json({
-            ok:false,
-            msg:"internal error"
-        });
-    }
-};
 
 module.exports={getTasks,getTaskById,}
