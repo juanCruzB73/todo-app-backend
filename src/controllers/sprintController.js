@@ -17,6 +17,24 @@ const getSprints=async(req,res)=>{
     }
 };
 
+const getSprintsById=async(req,res)=>{
+    const {sprintId} = req.params;
+    try{
+        const sprint=await Sprint.findById(sprintId);
+        if(!sprint)return res.status(404).json({message:"error finding the sprint"});
+        res.json({
+            ok:true,
+            sprint:sprint,
+        });
+    }catch(error){
+        console.log(error);
+        res.status(500).json({
+            ok:false,
+            msg:"internal error"
+        });
+    }
+};
+
 const addSprint=async(req,res)=>{
     try{
         const sprint=new Sprint(req.body);
@@ -87,7 +105,7 @@ const getSprintTasks=async(req,res)=>{
     
     try{
         const sprint=await Sprint.findById(sprintId);
-
+        if(!sprint)return res.status(404).json({message:"error finding the sprint"});
         res.json({
             ok:true,
             sprintTasks:sprint.tasks,
@@ -189,4 +207,4 @@ const deleteSprintTasks=async(req,res)=>{
     }
 };
 
-module.exports={getSprints,addSprint,updateSprint,deleteSprint,getSprintTasks,addSprintTasks,updateSprintTasks,deleteSprintTasks}
+module.exports={getSprints,addSprint,updateSprint,deleteSprint,getSprintTasks,addSprintTasks,updateSprintTasks,deleteSprintTasks,getSprintsById}
